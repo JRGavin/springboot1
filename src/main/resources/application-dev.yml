@@ -1,0 +1,9 @@
+server:
+  port: 8001
+  context-path: /springboot1
+debug: true
+
+
+
+
+

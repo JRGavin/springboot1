@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+    <property name="Log_Home" value="../logs/sb1" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [${PID:-}] %m%n  </pattern>
+        </encoder>
+    </appender>
+    <!-- 按日期和大小区分的滚动日志 -->
+
+    <!-- BIZLOG -->
+    <appender name="BIZLOG"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${Log_Home}/proc.log</file>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}%m%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${Log_Home}/proc-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <!-- or whenever the file size reaches 100MB -->
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+    <appender name="BIZLOGAsyn" class="ch.qos.logback.classic.AsyncAppender">
+        <!-- 不丢失日志. -->
+        <discardingThreshold>0</discardingThreshold>
+        <!-- 添加附加的appender -->
+        <appender-ref ref="BIZLOG" />
+    </appender>
+    <logger name="BIZLOG" level="DEBUG" additivity="false">
+        <appender-ref ref="BIZLOGAsyn" />
+    </logger>
+    <logger name="STDOUT" level="DEBUG" additivity="false">
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="BIZLOG" />
+    </root>
+</configuration>

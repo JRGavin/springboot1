@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: ${ENV:dev}
+  jackson:
+    default-property-inclusion: non_null
+    #jackjson\u9A7C\u5CF0\u65B9\u5F0F\u8FD4\u56DE
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+
+
+
+
+
+
