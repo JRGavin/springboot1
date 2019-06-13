@@ -1,4 +1,4 @@
-package org.gavin.springboot1;
+package org.gavin.springboot1.swagger;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Springboot1ApplicationTests {
+public class SwaggerApplicationTests {
 
     @Test
     public void contextLoads() {

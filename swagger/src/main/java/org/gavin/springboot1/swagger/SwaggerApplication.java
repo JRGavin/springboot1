@@ -1,13 +1,13 @@
-package org.gavin.springboot1;
+package org.gavin.springboot1.swagger;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Springboot1Application {
+public class SwaggerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Springboot1Application.class, args);
+        SpringApplication.run(SwaggerApplication.class, args);
     }
 
 }

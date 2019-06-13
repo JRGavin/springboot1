@@ -1,4 +1,4 @@
-package org.gavin.springboot1.controller;
+package org.gavin.springboot1.swagger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
