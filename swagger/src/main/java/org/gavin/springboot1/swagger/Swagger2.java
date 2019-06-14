@@ -25,8 +25,8 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                //为当前包路径
-                .apis(RequestHandlerSelectors.basePackage("org.gavin.springboot1.swagger"))
+                //为扫描的controller包路径
+                .apis(RequestHandlerSelectors.basePackage("org.gavin.springboot1.swagger.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -36,7 +36,7 @@ public class Swagger2 {
                 //页面标题
                 .title("Spring Boot 测试使用 Swagger2 构建RESTful API")
                 //创建人
-                .contact(new Contact("Gavin Wong", "http://www.baidu.com", ""))
+                .contact(new Contact("Gavin Wong", "https://swagger.io/", "793203698@qq.com"))
                 //版本号
                 .version("1.0")
                 //描述
