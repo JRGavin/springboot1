@@ -17,6 +17,7 @@
     <properties>
         <druid.version>1.1.10</druid.version>
         <swagger2.version>2.9.2</swagger2.version>
+        <skip.unit.tests>true</skip.unit.tests>
     </properties>
 
     <dependencies>
@@ -63,6 +64,7 @@
 
     </dependencies>
 
+<!--
     <build>
         <plugins>
             <plugin>
@@ -71,5 +73,56 @@
             </plugin>
         </plugins>
     </build>
+-->
 
+
+    <build>
+        <finalName>swagger2Demo</finalName>
+        <plugins>
+            <!--<plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <!--<source>${java.version}</source>-->
+                    <target>${java.version}</target>
+                    <verbose>true</verbose>
+                    <fork>true</fork>
+                    <executable>${JAVA8_HOME}/bin/javac</executable>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18</version>
+                <configuration>
+                    <!-- Skips unit tests if the value of skip.unit.tests property is true -->
+                    <skipTests>${skip.unit.tests}</skipTests>
+                    <excludes>
+                        <exclude>**/*Test.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                       <!--  以下注释了，就会去掉sources源码文件
+                         <resource>
+                             <directory>${build.sourceDirectory}</directory>
+                             <targetPath>sources</targetPath>
+                         </resource>-->
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
