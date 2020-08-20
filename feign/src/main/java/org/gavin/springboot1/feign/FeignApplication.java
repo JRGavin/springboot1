@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +27,10 @@ public class FeignApplication {
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello() {
         return service.hello();
+    }
+
+    @RequestMapping(value = "/user/{u}", method = RequestMethod.GET)
+    public String user(@PathVariable("u") String user) {
+        return service.user(user);
     }
 }

@@ -14,4 +14,9 @@ public class HelloServiceHystrix implements HelloService {
     public String hello() {
         return "调用服务失败";
     }
+
+    @Override
+    public String user(String user) {
+        return "调用user服务失败";
+    }
 }
